@@ -12,7 +12,6 @@ const SignupScreen = ({ navigation }) => {
             <Spacer>
                 <Text h3>Sign Up for Tracker</Text>
             </Spacer>
-            <Spacer/>
             <Spacer>
                 <Input 
                     label="Email" 
