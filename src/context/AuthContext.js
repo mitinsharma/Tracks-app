@@ -1,7 +1,6 @@
 import createDataContext from './createDataContext';
 import trackerApi from '../api/Tracker';
-//import AsyncStorage from "@react-native-community/async-storage";
-//import EncryptedStorage from 'react-native-encrypted-storage';
+import { AsyncStorage } from 'react-native';
 
 const authReducer = (state, action) => {
     switch(action.type) {
@@ -17,9 +16,8 @@ const authReducer = (state, action) => {
 const signup = (dispatch) => async ({ email, password }) => {
     try {
         const response = await trackerApi.post('/signup',{ email, password });
-        //await AsyncStorage.setItem('token',response.data.token);
-        //await EncryptedStorage.setItem('token',response.data.token);
-        console.log('Token:  ' + response.data.token);
+        await AsyncStorage.setItem('token',response.data.token);
+        console.log('Token:  ' + AsyncStorage.getItem('token'));
         dispatch({ type: 'signup', payload: response.data.token });
         // navigate to main flow
     } catch(err) {
