@@ -3,6 +3,8 @@ import trackerApi from '../api/Tracker';
 import { AsyncStorage } from 'react-native';
 import { navigate } from '../NavigationRef';
 
+let token = null;
+
 const authReducer = (state, action) => {
     switch(action.type) {
         case 'add_error' :
@@ -35,17 +37,19 @@ const signin = (dispatch) => async ({ email, password }) => {
         navigate('TrackList');
     } catch(err) {
         dispatch({ type: 'add_error', playload: 'something went wrong with signup' });
+    }
 };
 
 
 const signout = (dispatch) => {
-    return () => {
+    return async () => {
         // make api request to signout 
+        await AsyncStorage.setItem('token',null);
     };
 };
 
 export const { Provider, Context} = createDataContext(
     authReducer,
     { signin, signout, signup },
-    { token: null, errorMessage: '' }
+    { token: token, errorMessage: '' }
 );
