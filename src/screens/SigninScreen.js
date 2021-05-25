@@ -1,14 +1,15 @@
 import React, { useContext } from  'react';
-import { View, StyleSheet,TouchableOpacity } from 'react-native';
-import { Text } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
 import AuthForm from './components/AuthForm';
 import { Context as AuthContext } from '../context/AuthContext';
 import NavLink from '../context/NavLink';
+import { NavigationEvents } from 'react-navigation';
 
 const SigninScreen = ({ navigation }) => {
-    const { state, signin } = useContext(AuthContext);
+    const { state, signin, clearErrorMessage } = useContext(AuthContext);
 
-
+    <NavigationEvents onWillFocus = { clearErrorMessage }  />
+    
     return (
         <View style={styles.container}>
             <AuthForm 
@@ -34,7 +35,9 @@ SigninScreen.navigationOptions = () => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 100
+        flex: 1,
+        justifyContent: 'center',
+        marginBottom: 250
     }
 });
 

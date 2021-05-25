@@ -34,7 +34,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitButtonText }) => {
                 </Spacer>
 
                 
-                {errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null }
+                {errorMessage ? <Text style={styles.errorMessage}>{errorMessage}</Text> : null }
 
                 <Spacer>
                     <Button title={submitButtonText} onPress={() => onSubmit({email, password})}></Button>
